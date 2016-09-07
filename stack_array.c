@@ -3,8 +3,14 @@
 
 #include "stack.h"
 
-stack* stack_create(int size) {
-    stack* s = malloc(sizeof(stack));
+struct stack {
+    int top;
+    int size;
+    item *data_array;
+};
+
+Stack stack_create(int size) {
+    Stack s = malloc(sizeof(struct stack));
     if(s == NULL) {
         return NULL;
     }
@@ -20,7 +26,7 @@ stack* stack_create(int size) {
     return s;
 }
 
-void stack_println(stack *s) {
+void stack_println(Stack s) {
     for(int i = 0; i < s->top; i++) {
         printf("%d ", s->data_array[i]);
     }
@@ -28,15 +34,15 @@ void stack_println(stack *s) {
     printf("\n");
 }
 
-bool stack_is_full(stack *s) {
+bool stack_is_full(Stack s) {
     return s->top == s->size;
 }
 
-bool stack_is_empty(stack *s) {
+bool stack_is_empty(Stack s) {
     return s->top == 0;
 }
 
-bool stack_push(stack *s, item data) {
+bool stack_push(Stack s, item data) {
     if(stack_is_full(s)) {
         return false;
     }
@@ -45,7 +51,7 @@ bool stack_push(stack *s, item data) {
     return true;
 }
 
-item stack_pop(stack *s) {
+item stack_pop(Stack s) {
     if(stack_is_empty(s)) {
         return 0;
     }
@@ -53,11 +59,11 @@ item stack_pop(stack *s) {
     return s->data_array[--s->top];
 }
 
-void stack_make_empty(stack *s) {
+void stack_make_empty(Stack s) {
     s->top = 0;
     return;
 }
 
-int stack_len(stack *s) {
+int stack_len(Stack s) {
     return s->top;
 }

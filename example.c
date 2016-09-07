@@ -3,7 +3,7 @@
 
 #include "stack.h"
 
-void debug(stack *s) {
+void debug(Stack s) {
     printf("--------------\n");
 
     printf("%p\n", s);
@@ -15,7 +15,7 @@ void debug(stack *s) {
 }
 
 int main() {
-    stack* s = stack_create(5);
+    Stack s = stack_create(5);
 
     debug(s);
     printf("push\n");

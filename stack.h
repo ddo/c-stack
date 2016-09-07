@@ -5,32 +5,28 @@
 
 // change this to your item
 typedef int item;
-// or
+// ex:
 // typedef unsigned int item;
 
-typedef struct {
-    int top;
-    int size;
-    item *data_array;
-} stack;
+typedef struct stack* Stack;
 
-// dynalic locate memory
+// dynamic locate memory
 // call free when done
-stack* stack_create();
+Stack stack_create(int);
 
 // util for debug
-void stack_println();
+void stack_println(Stack);
 
 // should call stack_is_full before push
-bool stack_push();
+bool stack_push(Stack, item);
 
 // should call stack_is_empty before pop
 // pop return 0 on empty
-item stack_pop();
+item stack_pop(Stack);
 
-bool stack_is_full();
-bool stack_is_empty();
-void stack_make_empty();
-int stack_len();
+bool stack_is_full(Stack);
+bool stack_is_empty(Stack);
+void stack_make_empty(Stack);
+int stack_len(Stack);
 
 #endif
