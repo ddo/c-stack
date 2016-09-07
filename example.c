@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "stack.h"
 
@@ -14,41 +15,40 @@ void debug(stack *s) {
 }
 
 int main() {
-    stack s;
-    debug(&s);
+    stack* s = stack_create(5);
 
-    stack_init(&s);
-
-    debug(&s);
+    debug(s);
     printf("push\n");
 
-    printf("push: %s\n", stack_push(&s, 1) ? "true" : "false");
-    stack_println(&s);
-    printf("push: %s\n", stack_push(&s, 2) ? "true" : "false");
-    stack_println(&s);
-    printf("push: %s\n", stack_push(&s, 3) ? "true" : "false");
-    stack_println(&s);
-    printf("push: %s\n", stack_push(&s, 4) ? "true" : "false");
-    stack_println(&s);
-    printf("push: %s\n", stack_push(&s, 5) ? "true" : "false");
-    stack_println(&s);
-    printf("push: %s\n", stack_push(&s, 6) ? "true" : "false");
-    stack_println(&s);
+    printf("push: %s\n", stack_push(s, 1) ? "true" : "false");
+    stack_println(s);
+    printf("push: %s\n", stack_push(s, 2) ? "true" : "false");
+    stack_println(s);
+    printf("push: %s\n", stack_push(s, 3) ? "true" : "false");
+    stack_println(s);
+    printf("push: %s\n", stack_push(s, 4) ? "true" : "false");
+    stack_println(s);
+    printf("push: %s\n", stack_push(s, 5) ? "true" : "false");
+    stack_println(s);
+    printf("push: %s\n", stack_push(s, 6) ? "true" : "false");
+    stack_println(s);
 
-    debug(&s);
+    debug(s);
     printf("pop\n");
 
-    printf("pop: %d\n", stack_pop(&s));
-    stack_println(&s);
-    printf("pop: %d\n", stack_pop(&s));
-    stack_println(&s);
-    printf("pop: %d\n", stack_pop(&s));
-    stack_println(&s);
+    printf("pop: %d\n", stack_pop(s));
+    stack_println(s);
+    printf("pop: %d\n", stack_pop(s));
+    stack_println(s);
+    printf("pop: %d\n", stack_pop(s));
+    stack_println(s);
 
-    debug(&s);
+    debug(s);
     printf("make empty\n");
-    stack_make_empty(&s);
+    stack_make_empty(s);
 
-    debug(&s);
+    debug(s);
+    free(s);
+    
     return 0;
 }

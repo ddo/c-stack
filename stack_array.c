@@ -1,9 +1,23 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "stack.h"
 
-void stack_init(stack *s) {
+stack* stack_create(int size) {
+    stack* s = malloc(sizeof(stack));
+    if(s == NULL) {
+        return NULL;
+    }
+
+    // create data array
+    s->data_array = malloc(sizeof(int) * size);
+    if(s->data_array == NULL) {
+        return NULL;
+    }
+
     s->top = 0;
+    s->size = size;
+    return s;
 }
 
 void stack_println(stack *s) {
@@ -15,14 +29,14 @@ void stack_println(stack *s) {
 }
 
 bool stack_is_full(stack *s) {
-    return s->top == STACK_MAX_LENGTH;
+    return s->top == s->size;
 }
 
 bool stack_is_empty(stack *s) {
     return s->top == 0;
 }
 
-bool stack_push(stack *s, int data) {
+bool stack_push(stack *s, item data) {
     if(stack_is_full(s)) {
         return false;
     }
@@ -31,7 +45,7 @@ bool stack_push(stack *s, int data) {
     return true;
 }
 
-int stack_pop(stack *s) {
+item stack_pop(stack *s) {
     if(stack_is_empty(s)) {
         return 0;
     }

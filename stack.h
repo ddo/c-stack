@@ -3,20 +3,30 @@
 #ifndef STACK_H
 #define STACK_H
 
-#define STACK_MAX_LENGTH 5
+// change this to your item
+typedef int item;
+// or
+// typedef unsigned int item;
 
-typedef struct stack {
+typedef struct {
     int top;
-    int data_array[STACK_MAX_LENGTH];
+    int size;
+    item *data_array;
 } stack;
 
-void stack_init();
+// dynalic locate memory
+// call free when done
+stack* stack_create();
+
+// util for debug
 void stack_println();
+
+// should call stack_is_full before push
 bool stack_push();
 
-// should call is empty before pop
+// should call stack_is_empty before pop
 // pop return 0 on empty
-int stack_pop();
+item stack_pop();
 
 bool stack_is_full();
 bool stack_is_empty();
